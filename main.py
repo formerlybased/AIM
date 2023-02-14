@@ -27,12 +27,16 @@ print("Closing prompt file")
 file.close()
 
 print("Starting generation...")
+
+amt = 0
+
 for a in prompts:
     a.removeprefix("\n")
-    print("Generating " + config["image_count"] + " images from prompt: " + a)
-    for i in config["image_count"]:
+    print("Generating " + str(config["image_count"]) + " images from prompt: " + a)
+    for i in range(config["image_count"]):
         img = ai(a).images[0]
-        img.save(f"prompt{a}count{i}.png")
+        img.save(f"prompt{amt}count{i}.png")
         print("Image: " + a + "saved.")
+    amt += 1
 
 print("Program over.")
